@@ -1,0 +1,95 @@
+/* GLOBAL STYLING */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 15px 30px;
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.nav-link {
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.blog-image{
+    height: 230px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.detail-image{
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.blog-description{
+    font-size: 18px;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.blog-description p{
+    margin-bottom: 25px;
+}
+
+/* FOOTER ONLY */
+footer.container {
+    padding: 20px 30px;
+}
+
+footer.container p {
+    margin: 0;
+    font-size: 17px;
+}
+
+footer.container a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer.container a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Back To Top Button */
+footer .float-end a {
+    background: #0d6efd;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+footer .float-end a:hover {
+    background: #084298;
+    text-decoration: none;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    footer.container {
+        text-align: center;
+    }
+
+    footer .float-end {
+        float: none !important;
+        margin-bottom: 10px;
+    }
+}

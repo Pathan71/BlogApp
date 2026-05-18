@@ -1,0 +1,13 @@
+from app import db, User, bcrypt
+
+hashed_password = bcrypt.generate_password_hash("khan123").decode('utf-8')
+
+admin = User(
+    username="Saheruddin",
+    email="saheruddin@gmail.com",
+    password=hashed_password,
+    role="admin"
+)
+
+db.session.add(admin)
+db.session.commit()

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %} BlogApp-Home {% endblock %}
+
+
+{% block content %}
+
+<main class="container py-5">
+    <div class="row g-4">
+        <!-- CARD 1 -->
+        {% for blog in my_blog %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="card shadow h-100 border-0">
+                <a href="{{ url_for('blogDetail', id=blog.id) }}">
+                    <img 
+                    loading="lazy"
+                    src="{{ url_for('static', filename='uploads/' + blog.images) }}" 
+                    class="card-img-top img-fluid blog-image"
+                    alt="Blog Image"
+                    >
+                </a>
+                <div class="card-body text-center">
+                    <h3 class="card-title">
+                        {{blog.title}}
+                    </h3>
+                    <p class="card-text">
+                        {{ blog.description | striptags | truncate(150, True, '...') }}
+                    </p>
+                    {% if session.get('role') == 'admin' %}
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <a data-bs-toggle="modal" data-bs-target="#updateModal{{ blog.id }}" class="btn btn-success px-4">Update</a>
+                            <a href="/deleteBlog/{{blog.id}}" class="btn btn-danger px-4" onclick="return confirm('Are Sure To Delete?')">Delete</a>
+                        </div>
+                    {% else %}
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('blogDetail', id=blog.id) }}" class="btn btn-primary px-4">Blog Details</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- UPDATE MODAL -->
+        <div class="modal fade" id="updateModal{{ blog.id }}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Blog</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+        
+                    <div class="modal-body">
+                        <form action="/updateBlog/{{ blog.id }}" method="POST"enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" value="{{ blog.title }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" rows="4">
+                                    {{ blog.description }}
+                                </textarea>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label class="form-label">New Image</label>
+                                <input type="file" name="image" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Update Blog</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %} Add-Blogs {% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 500px;">
+        <h1 class="text-center mb-4">Add Blog</h1>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-success alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" arial-label="close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Blog Title:</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="title"
+                    placeholder="Enter blog title"
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description:</label>
+
+                <textarea 
+                    class="form-control" 
+                    name="description"
+                    rows="4"
+                    placeholder="Enter blog description"
+                ></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Images:</label>
+                <input 
+                    type="file" 
+                    class="form-control" 
+                    name="image"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Submit
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

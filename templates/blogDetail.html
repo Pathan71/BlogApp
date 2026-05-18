@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Blog-Details {% endblock %}
+
+{% block content %}
+
+<main class="container py-5">
+    <a href="/" class="d-inline mb-4 text-decoration-none text-primary fw-bold shadow-sm px-3 py-2 rounded">
+        <i class="bi bi-arrow-left fs-4 text-primary"></i>
+    </a>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow border-0">
+                <!-- IMAGE -->
+                <img 
+                    src="{{ url_for('static', filename='uploads/' + blog.images) }}"
+                    class="card-img-top detail-image"
+                    alt="Blog Image"
+                >
+                <!-- BODY -->
+                <div class="card-body p-5">
+                    <!-- TITLE -->
+                    <h1 class="fw-bold mb-4 text-center">
+                        {{ blog.title }}
+                    </h1>
+                    <!-- DESCRIPTION -->
+                    <div class="blog-description">
+
+                        {% for paragraph in blog.description.split('\n') %}
+                            <p>{{ paragraph }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

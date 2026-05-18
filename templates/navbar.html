@@ -1,0 +1,58 @@
+
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BlogApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- LEFT SIDE -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">   
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="/addBlog">Add Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="/myBlog">My Blog</a>
+                </li>
+            </ul>
+
+            <!-- RIGHT SIDE -->
+            <ul class="navbar-nav ms-auto">
+                {% if session.get('user_id') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white d-flex align-items-center gap-2" href="#" role="button"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-4"></i>
+                    </a>
+            
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li class="dropdown-header fw-bold text-primary">
+                            {% if session.get('role') == 'admin' %}
+                                Admin : {{ session.get('username') }}
+                            {% else %}
+                                User : {{ session.get('username') }}
+                            {% endif %}
+                        </li>
+            
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li>
+                            <a class="dropdown-item text-danger" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+            
+                <li class="nav-item">
+                    <a class="btn btn-success" href="/login">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
