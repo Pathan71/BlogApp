@@ -165,7 +165,6 @@ def myBlog():
 def register():
     if 'user_id' in session:
         flash("You are already logged in!")
-
         return redirect(url_for('index'))
 
     if request.method == 'POST':
@@ -189,7 +188,6 @@ def register():
         db.session.commit()
 
         flash("Regsiter Successfully!")
-
         return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -198,7 +196,6 @@ def register():
 def login():
     if 'user_id' in session:
         flash("You are already logged in!")
-
         return redirect(url_for('index'))
 
     if request.method == 'POST':
@@ -217,7 +214,6 @@ def login():
                 return redirect(url_for('index'))
 
             flash('User Login Successfully!')
-            
             return redirect(url_for('index'))
 
         else:
